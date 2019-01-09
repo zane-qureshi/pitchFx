@@ -1,0 +1,940 @@
+#install.packages("mlbgameday")
+#library(mlbgameday)
+
+#following commands will use 3 processors, 2hour scrape from MLBGameDay website
+#all2015 <- get_payload(start = "2015-04-01", end = "2015-11-01") 
+#all2016 <- get_payload(start = "2016-04-03", end = "2016-11-02") 
+#all2017 <- get_payload(start = "2017-04-03", end = "2017-11-01")
+
+
+#install.packages("dplyr")
+#library(dplyr)
+
+
+#create data.frames for JB00*,JD00*,KP00*, subset by batter, and generate selected attributes  
+JB001_2015 <- inner_join(all2015$pitch, all2015$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Jose Bautista") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+JB002_2016 <- inner_join(all2016$pitch, all2016$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Jose Bautista") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+JB003_2017 <- inner_join(all2017$pitch, all2017$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Jose Bautista") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+JD001_2015 <- inner_join(all2015$pitch, all2015$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Josh Donaldson") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+JD002_2016 <- inner_join(all2016$pitch, all2016$atbat, by = (c("num", "url"))) %>%
+  filter(batter_name=="Josh Donaldson") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+JD003_2017 <- inner_join(all2017$pitch, all2017$atbat, by = (c("num", "url"))) %>%
+  filter(batter_name=="Josh Donaldson")  %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+KP001_2015 <- inner_join(all2015$pitch, all2015$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Kevin Pillar") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+KP002_2016 <- inner_join(all2016$pitch, all2016$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Kevin Pillar") %>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+KP003_2017 <- inner_join(all2017$pitch, all2017$atbat, (c("num", "url"))) %>%
+  filter(batter_name=="Kevin Pillar")%>%
+  select(des, tfs_zulu.x, sv_id, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, vy0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, num, on_1b, on_2b, on_3b, count, pitcher, b, s, o, b_height, p_throws, score, home_team_runs, away_team_runs, batter_name)
+
+#remove missing values from 2015 years 
+JB001_2015 <- JB001_2015[-c(1:35),]
+JD001_2015 <- JD001_2015[-c(1:22),]
+KP001_2015 <- KP001_2015[-c(1:25),]
+
+# identify how many unique swing-events there are
+JB001_2015 %>%
+  + group_by(des) %>%
+  + summarise()
+
+# 14 types, convert each type to either 1 or 0. 1 = swing and 0 = no-swing
+#1 Ball _NOSWING_0                     
+#2 Ball In Dirt _NOSWING_0            
+#3 Called Strike _NOSWING_0          
+#4 Foul _SWING_1       
+#5 Foul (Runner Going) _SWING_1 
+#6 Foul Tip _SWING_1                 
+#7 Hit By Pitch _NOSWING_0           
+#8 In play, no out _SWING_1      
+#9 In play, out(s) _SWING_1          
+#10 In play, run(s) _SWING_1          
+#11 Intent Ball _NOSWING_0          
+#12 Pitchout _NOSWING_0               
+#13 Swinging Strike _SWING_1    
+#14 Swinging Strike (Blocked) _SWING_1
+
+#convert for JB_2015
+JB001_2015[JB001_2015$des == "Foul", 1] <- 1
+JB001_2015[JB001_2015$des == "Foul (Runner Going)", 1] <- 1
+JB001_2015[JB001_2015$des == "Foul Tip", 1] <- 1
+JB001_2015[JB001_2015$des == "In play, no out", 1] <- 1
+JB001_2015[JB001_2015$des == "In play, out(s)", 1] <- 1
+JB001_2015[JB001_2015$des == "In play, run(s)", 1] <- 1
+JB001_2015[JB001_2015$des == "Swinging Strike", 1] <- 1
+JB001_2015[JB001_2015$des == "Swinging Strike (Blocked)", 1] <- 1
+JB001_2015[JB001_2015$des == "Ball", 1] <- 0
+JB001_2015[JB001_2015$des == "Ball In Dirt", 1] <- 0
+JB001_2015[JB001_2015$des == "Called Strike", 1] <- 0
+JB001_2015[JB001_2015$des == "Hit By Pitch", 1] <- 0
+JB001_2015[JB001_2015$des == "Intent Ball", 1] <- 0
+JB001_2015[JB001_2015$des == "Pitchout", 1] <- 0
+JB001_2015[JB001_2015$des == "Swinging Strike", 1] <- 1
+JB001_2015[JB001_2015$des == "Swinging Strike (Blocked)", 1] <- 1
+
+
+#convert for JB002_2016
+JB002_2016[JB002_2016$des == "Ball", 1] <- 0
+JB002_2016[JB002_2016$des == "Ball In Dirt", 1] <- 0
+JB002_2016[JB002_2016$des == "Called Strike", 1] <- 0
+JB002_2016[JB002_2016$des == "Foul", 1] <- 1
+JB002_2016[JB002_2016$des == "Foul (Runner Going)", 1] <- 1
+JB002_2016[JB002_2016$des == "Foul Tip", 1] <- 1
+JB002_2016[JB002_2016$des == "Hit By Pitch", 1] <- 0
+JB002_2016[JB002_2016$des == "In play, no out", 1] <- 1
+JB002_2016[JB002_2016$des == "In play, out(s)", 1] <- 1
+JB002_2016[JB002_2016$des == "In play, run(s)", 1] <- 1
+JB002_2016[JB002_2016$des == "Intent Ball", 1] <- 0
+JB002_2016[JB002_2016$des == "Pitchout", 1] <- 0
+JB002_2016[JB002_2016$des == "Swinging Strike", 1] <- 1
+JB002_2016[JB002_2016$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JB003_2017
+JB003_2017[JB003_2017$des == "Ball", 1] <- 0
+JB003_2017[JB003_2017$des == "Ball In Dirt", 1] <- 0
+JB003_2017[JB003_2017$des == "Called Strike", 1] <- 0
+JB003_2017[JB003_2017$des == "Foul", 1] <- 1
+JB003_2017[JB003_2017$des == "Foul (Runner Going)", 1] <- 1
+JB003_2017[JB003_2017$des == "Foul Tip", 1] <- 1
+JB003_2017[JB003_2017$des == "Hit By Pitch", 1] <- 0
+JB003_2017[JB003_2017$des == "In play, no out", 1] <- 1
+JB003_2017[JB003_2017$des == "In play, out(s)", 1] <- 1
+JB003_2017[JB003_2017$des == "In play, run(s)", 1] <- 1
+JB003_2017[JB003_2017$des == "Intent Ball", 1] <- 0
+JB003_2017[JB003_2017$des == "Pitchout", 1] <- 0
+JB003_2017[JB003_2017$des == "Swinging Strike", 1] <- 1
+JB003_2017[JB003_2017$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JD_2015
+JD001_2015[JD001_2015$des == "Ball", 1] <- 0
+JD001_2015[JD001_2015$des == "Ball In Dirt", 1] <- 0
+JD001_2015[JD001_2015$des == "Called Strike", 1] <- 0
+JD001_2015[JD001_2015$des == "Foul", 1] <- 1
+JD001_2015[JD001_2015$des == "Foul (Runner Going)", 1] <- 1
+JD001_2015[JD001_2015$des == "Foul Tip", 1] <- 1
+JD001_2015[JD001_2015$des == "Hit By Pitch", 1] <- 0
+JD001_2015[JD001_2015$des == "In play, no out", 1] <- 1
+JD001_2015[JD001_2015$des == "In play, out(s)", 1] <- 1
+JD001_2015[JD001_2015$des == "In play, run(s)", 1] <- 1
+JD001_2015[JD001_2015$des == "Intent Ball", 1] <- 0
+JD001_2015[JD001_2015$des == "Pitchout", 1] <- 0
+JD001_2015[JD001_2015$des == "Swinging Strike", 1] <- 1
+JD001_2015[JD001_2015$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JB002_2016
+JD002_2016[JD002_2016$des == "Ball", 1] <- 0
+JD002_2016[JD002_2016$des == "Ball In Dirt", 1] <- 0
+JD002_2016[JD002_2016$des == "Called Strike", 1] <- 0
+JD002_2016[JD002_2016$des == "Foul", 1] <- 1
+JD002_2016[JD002_2016$des == "Foul (Runner Going)", 1] <- 1
+JD002_2016[JD002_2016$des == "Foul Tip", 1] <- 1
+JD002_2016[JD002_2016$des == "Hit By Pitch", 1] <- 0
+JD002_2016[JD002_2016$des == "In play, no out", 1] <- 1
+JD002_2016[JD002_2016$des == "In play, out(s)", 1] <- 1
+JD002_2016[JD002_2016$des == "In play, run(s)", 1] <- 1
+JD002_2016[JD002_2016$des == "Intent Ball", 1] <- 0
+JD002_2016[JD002_2016$des == "Pitchout", 1] <- 0
+JD002_2016[JD002_2016$des == "Swinging Strike", 1] <- 1
+JD002_2016[JD002_2016$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JB003_2017
+JD003_2017[JD003_2017$des == "Ball", 1] <- 0
+JD003_2017[JD003_2017$des == "Ball In Dirt", 1] <- 0
+JD003_2017[JD003_2017$des == "Called Strike", 1] <- 0
+JD003_2017[JD003_2017$des == "Foul", 1] <- 1
+JD003_2017[JD003_2017$des == "Foul (Runner Going)", 1] <- 1
+JD003_2017[JD003_2017$des == "Foul Tip", 1] <- 1
+JD003_2017[JD003_2017$des == "Hit By Pitch", 1] <- 0
+JD003_2017[JD003_2017$des == "In play, no out", 1] <- 1
+JD003_2017[JD003_2017$des == "In play, out(s)", 1] <- 1
+JD003_2017[JD003_2017$des == "In play, run(s)", 1] <- 1
+JD003_2017[JD003_2017$des == "Intent Ball", 1] <- 0
+JD003_2017[JD003_2017$des == "Pitchout", 1] <- 0
+JD003_2017[JD003_2017$des == "Swinging Strike", 1] <- 1
+JD003_2017[JD003_2017$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for KP_2015
+KP001_2015[KP001_2015$des == "Ball", 1] <- 0
+KP001_2015[KP001_2015$des == "Ball In Dirt", 1] <- 0
+KP001_2015[KP001_2015$des == "Called Strike", 1] <- 0
+KP001_2015[KP001_2015$des == "Foul", 1] <- 1
+KP001_2015[KP001_2015$des == "Foul (Runner Going)", 1] <- 1
+KP001_2015[KP001_2015$des == "Foul Tip", 1] <- 1
+KP001_2015[KP001_2015$des == "Hit By Pitch", 1] <- 0
+KP001_2015[KP001_2015$des == "In play, no out", 1] <- 1
+KP001_2015[KP001_2015$des == "In play, out(s)", 1] <- 1
+KP001_2015[KP001_2015$des == "In play, run(s)", 1] <- 1
+KP001_2015[KP001_2015$des == "Intent Ball", 1] <- 0
+KP001_2015[KP001_2015$des == "Pitchout", 1] <- 0
+KP001_2015[KP001_2015$des == "Swinging Strike", 1] <- 1
+KP001_2015[KP001_2015$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JB002_2016
+KP002_2016[KP002_2016$des == "Ball", 1] <- 0
+KP002_2016[KP002_2016$des == "Ball In Dirt", 1] <- 0
+KP002_2016[KP002_2016$des == "Called Strike", 1] <- 0
+KP002_2016[KP002_2016$des == "Foul", 1] <- 1
+KP002_2016[KP002_2016$des == "Foul (Runner Going)", 1] <- 1
+KP002_2016[KP002_2016$des == "Foul Tip", 1] <- 1
+KP002_2016[KP002_2016$des == "Hit By Pitch", 1] <- 0
+KP002_2016[KP002_2016$des == "In play, no out", 1] <- 1
+KP002_2016[KP002_2016$des == "In play, out(s)", 1] <- 1
+KP002_2016[KP002_2016$des == "In play, run(s)", 1] <- 1
+KP002_2016[KP002_2016$des == "Intent Ball", 1] <- 0
+KP002_2016[KP002_2016$des == "Pitchout", 1] <- 0
+KP002_2016[KP002_2016$des == "Swinging Strike", 1] <- 1
+KP002_2016[KP002_2016$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert for JB003_2017
+KP003_2017[KP003_2017$des == "Ball", 1] <- 0
+KP003_2017[KP003_2017$des == "Ball In Dirt", 1] <- 0
+KP003_2017[KP003_2017$des == "Called Strike", 1] <- 0
+KP003_2017[KP003_2017$des == "Foul", 1] <- 1
+KP003_2017[KP003_2017$des == "Foul (Runner Going)", 1] <- 1
+KP003_2017[KP003_2017$des == "Foul Tip", 1] <- 1
+KP003_2017[KP003_2017$des == "Hit By Pitch", 1] <- 0
+KP003_2017[KP003_2017$des == "In play, no out", 1] <- 1
+KP003_2017[KP003_2017$des == "In play, out(s)", 1] <- 1
+KP003_2017[KP003_2017$des == "In play, run(s)", 1] <- 1
+KP003_2017[KP003_2017$des == "Intent Ball", 1] <- 0
+KP003_2017[KP003_2017$des == "Pitchout", 1] <- 0
+KP003_2017[KP003_2017$des == "Swinging Strike", 1] <- 1
+KP003_2017[KP003_2017$des == "Swinging Strike (Blocked)", 1] <- 1
+
+#convert home_team_runs and away_team_runs to numeric type FROM character type
+JB001_2015$home_team_runs <- as.numeric(as.character(JB001_2015$home_team_runs))
+JB001_2015$away_team_runs <- as.numeric(as.character(JB001_2015$away_team_runs))
+JB002_2016$home_team_runs <- as.numeric(as.character(JB002_2016$home_team_runs))
+JB002_2016$away_team_runs <- as.numeric(as.character(JB002_2016$away_team_runs))
+JB003_2017$home_team_runs <- as.numeric(as.character(JB003_2017$home_team_runs))
+JB003_2017$away_team_runs <- as.numeric(as.character(JB003_2017$away_team_runs))
+JD001_2015$home_team_runs <- as.numeric(as.character(JD001_2015$home_team_runs))
+JD001_2015$away_team_runs <- as.numeric(as.character(JD001_2015$away_team_runs))
+JD002_2016$home_team_runs <- as.numeric(as.character(JD002_2016$home_team_runs))
+JD002_2016$away_team_runs <- as.numeric(as.character(JD002_2016$away_team_runs))
+JD003_2017$home_team_runs <- as.numeric(as.character(JD003_2017$home_team_runs))
+JD003_2017$away_team_runs <- as.numeric(as.character(JD003_2017$away_team_runs))
+KP001_2015$home_team_runs <- as.numeric(as.character(KP001_2015$home_team_runs))
+KP001_2015$away_team_runs <- as.numeric(as.character(KP001_2015$away_team_runs))
+KP002_2016$home_team_runs <- as.numeric(as.character(KP002_2016$home_team_runs))
+KP002_2016$away_team_runs <- as.numeric(as.character(KP002_2016$away_team_runs))
+KP003_2017$home_team_runs <- as.numeric(as.character(KP003_2017$home_team_runs))
+KP003_2017$away_team_runs <- as.numeric(as.character(KP003_2017$away_team_runs))
+
+
+#merge the training data tables together and for further preprocessing
+JB_TOTAL <- rbind(JB001_2015, JB002_2016, JB003_2017)
+JD_TOTAL <- rbind(JD001_2015, JD002_2016, JD003_2017)
+KP_TOTAL <- rbind(KP001_2015, KP002_2016, KP003_2017)
+
+# MASTER_DATA created
+MASTER_DATA <- rbind(JB_TOTAL, JD_TOTAL, KP_TOTAL)
+
+
+#MASTER_DATA %>%
+  #distinct(des) #ensure class variable is binary
+
+#convert remaining variables to 1(swing) or 0(no-swing)
+
+#MASTER_DATA %>%
+  #distinct(des) #confirm binary class
+
+#convert az(pitch acceleration along z-axis) from character to numeric
+MASTER_DATA$az <- as.numeric(as.character(MASTER_DATA$az))
+
+
+#convert break_angle from character to numeric
+MASTER_DATA$break_angle <- as.numeric(as.character(MASTER_DATA$break_angle))
+
+#convert missing values to 0
+MASTER_DATA[is.na(MASTER_DATA)] <- 0
+
+#convert character types to factor
+MASTER_DATA$break_y <- as.factor(as.character(MASTER_DATA$break_y))
+MASTER_DATA$zone <- as.factor(as.numeric(MASTER_DATA$zone))
+MASTER_DATA$inning_side.x <- as.factor(as.character(MASTER_DATA$inning_side.x))
+MASTER_DATA$inning.x <- as.factor(as.numeric(MASTER_DATA$inning.x)) #has 19 levels
+MASTER_DATA$p_throws <- as.factor(as.character(MASTER_DATA$p_throws))
+MASTER_DATA$o <- as.factor(as.numeric(MASTER_DATA$o))
+MASTER_DATA$pitch_type <- as.factor(as.character(MASTER_DATA$pitch_type))
+
+
+# remove columns with no-informative power to class variable
+MASTER_DATA <- MASTER_DATA %>%
+  select(des, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, o, p_throws, home_team_runs, away_team_runs, batter_name)
+
+# create new column called differential via away_team_runs and home_team_runs
+MASTER_DATA_top <- mutate(MASTER_DATA, differential = MASTER_DATA$away_team_runs - MASTER_DATA$home_team_runs) %>%
+  filter(MASTER_DATA$inning_side.x == "top")
+MASTER_DATA_bottom <- mutate(MASTER_DATA, differential = MASTER_DATA$home_team_runs - MASTER_DATA$away_team_runs) %>%
+  filter(MASTER_DATA$inning_side.x == "bottom")
+MASTER_DATA <- rbind(MASTER_DATA_top, MASTER_DATA_bottom)
+
+#remove home_team_runs and away_team_runs columns
+MASTER_DATA <- MASTER_DATA %>%
+  select(des, start_speed, end_speed, sz_top, sz_bot, pfx_x, pfx_z, px, pz, x0, y0, z0, vx0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, o, p_throws, differential, batter_name)
+
+
+#install.packages(farff)
+#library(farff)
+
+#library(RWeka)
+# write.arff(MASTER_DATA, file = "MASTER_DATA.arff") after pre-processing with weka and saving file re-load file with outlier and extreme value columns
+
+
+#MASTER_DATA_outliers <- readARFF("MASTER_DATAoutlliers.arff", data.reader = "readr", tmp.file = tempfile(),
+#                               convert.to.logicals = TRUE, show.info = TRUE)
+
+#remove outliers
+
+MASTER_DATA_no_outliers <- MASTER_DATA_outliers %>%
+  filter(MASTER_DATA_outliers$Outlier == "no", ExtremeValue == "no")
+
+final_MASTER <- MASTER_DATA_no_outliers
+MASTER <- final_MASTER
+MASTER2 <- final_MASTER
+
+#ensure data-types are correct
+MASTER$des <- as.factor(as.logical(MASTER$des))
+MASTER$pitch_type <- as.factor(as.character(MASTER$pitch_type))
+MASTER$on_1b <- as.factor(as.logical(MASTER$on_1b))
+MASTER$on_2b <- as.factor(as.logical(MASTER$on_2b))
+MASTER$on_3b <- as.factor(as.logical(MASTER$on_3b))
+
+
+#convert categorical variables to non-negative and finite variables
+library(plyr)
+MASTER$des <- revalue(MASTER$des, c("FALSE"="1"))
+MASTER$des <- revalue(MASTER$des, c("TRUE"="2"))
+
+MASTER$break_y <- revalue(MASTER$break_y, c("0"="0"))
+MASTER$break_y <- revalue(MASTER$break_y, c("23.5"="1"))
+MASTER$break_y <- revalue(MASTER$break_y, c("23.6"="2"))
+MASTER$break_y <- revalue(MASTER$break_y, c("23.7"="3"))
+MASTER$break_y <- revalue(MASTER$break_y, c("23.8"="4"))
+MASTER$break_y <- revalue(MASTER$break_y, c("23.9"="5"))
+MASTER$break_y <- revalue(MASTER$break_y, c("24.0"="6"))
+
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("SI"="1"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("FS"="2"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("SL"="3"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("FF"="4"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("FC"="5"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("CU"="6"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("CH"="7"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("KC"="8"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("FT"="9"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("IN"="10"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("KN"="11"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("EP"="12"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("FO"="13"))
+MASTER$pitch_type <- revalue(MASTER$pitch_type, c("PO"="14"))
+
+MASTER$zone <- revalue(MASTER$zone, c("1"="1"))
+MASTER$zone <- revalue(MASTER$zone, c("2"="2"))
+MASTER$zone <- revalue(MASTER$zone, c("3"="3"))
+MASTER$zone <- revalue(MASTER$zone, c("4"="4"))
+MASTER$zone <- revalue(MASTER$zone, c("5"="5"))
+MASTER$zone <- revalue(MASTER$zone, c("6"="6"))
+MASTER$zone <- revalue(MASTER$zone, c("7"="7"))
+MASTER$zone <- revalue(MASTER$zone, c("8"="8"))
+MASTER$zone <- revalue(MASTER$zone, c("9"="9"))
+MASTER$zone <- revalue(MASTER$zone, c("11"="10"))
+MASTER$zone <- revalue(MASTER$zone, c("12"="11"))
+MASTER$zone <- revalue(MASTER$zone, c("13"="12"))
+MASTER$zone <- revalue(MASTER$zone, c("14"="13"))
+
+MASTER$inning_side.x <- revalue(MASTER$inning_side.x, c("top"="1"))
+MASTER$inning_side.x <- revalue(MASTER$inning_side.x, c("bottom"="2"))
+
+MASTER$on_1b <- revalue(MASTER$on_1b, c("FALSE"="1"))
+MASTER$on_1b <- revalue(MASTER$on_1b, c("TRUE"="2"))
+MASTER$on_2b <- revalue(MASTER$on_2b, c("FALSE"="1"))
+MASTER$on_2b <- revalue(MASTER$on_2b, c("TRUE"="2"))
+MASTER$on_3b <- revalue(MASTER$on_3b, c("FALSE"="1"))
+MASTER$on_3b <- revalue(MASTER$on_3b, c("TRUE"="2"))
+
+MASTER$count <- revalue(MASTER$count, c("0-0"="1"))
+MASTER$count <- revalue(MASTER$count, c("0-1"="2"))
+MASTER$count <- revalue(MASTER$count, c("1-1"="3"))
+MASTER$count <- revalue(MASTER$count, c("2-1"="4"))
+MASTER$count <- revalue(MASTER$count, c("2-2"="5"))
+MASTER$count <- revalue(MASTER$count, c("0-2"="6"))
+MASTER$count <- revalue(MASTER$count, c("1-2"="7"))
+MASTER$count <- revalue(MASTER$count, c("1-0"="8"))
+MASTER$count <- revalue(MASTER$count, c("2-0"="9"))
+MASTER$count <- revalue(MASTER$count, c("3-1"="10"))
+MASTER$count <- revalue(MASTER$count, c("3-2"="11"))
+MASTER$count <- revalue(MASTER$count, c("3-0"="12"))
+
+MASTER$p_throws <- revalue(MASTER$p_throws, c("L"="1"))
+MASTER$p_throws <- revalue(MASTER$p_throws, c("R"="2"))
+
+
+MASTER$differential <- revalue(MASTER$differential, c("-19"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-14"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-13"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-12"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-11"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-10"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-9"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-8"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-7"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-6"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-5"="200"))
+MASTER$differential <- revalue(MASTER$differential, c("-4"="201"))
+MASTER$differential <- revalue(MASTER$differential, c("-3"="201"))
+MASTER$differential <- revalue(MASTER$differential, c("-2"="201"))
+MASTER$differential <- revalue(MASTER$differential, c("-1"="201"))
+MASTER$differential <- revalue(MASTER$differential, c("0"="202"))
+MASTER$differential <- revalue(MASTER$differential, c("1"="203"))
+MASTER$differential <- revalue(MASTER$differential, c("2"="203"))
+MASTER$differential <- revalue(MASTER$differential, c("3"="203"))
+MASTER$differential <- revalue(MASTER$differential, c("4"="203"))
+MASTER$differential <- revalue(MASTER$differential, c("5"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("6"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("7"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("8"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("9"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("10"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("11"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("12"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("13"="204"))
+MASTER$differential <- revalue(MASTER$differential, c("14"="204"))
+
+
+MASTER$differential <- revalue(MASTER$differential, c("200"="1"))
+MASTER$differential <- revalue(MASTER$differential, c("201"="2"))
+MASTER$differential <- revalue(MASTER$differential, c("202"="3"))
+MASTER$differential <- revalue(MASTER$differential, c("203"="4"))
+MASTER$differential <- revalue(MASTER$differential, c("204"="5"))
+
+MASTER$des <- revalue(MASTER$des, c("1"="0"))
+MASTER$des <- revalue(MASTER$des, c("2"="1"))
+
+
+#generate histograms for all numeric data and boxplots for factorial data 
+hist(MASTER$start_speed, main = "Histogram of Start Speed", xlab = "mph")
+hist(MASTER$end_speed, main = "Histogram of End Speed", xlab = "mph")
+hist(MASTER$pfx_x, main = "Histogram of pfx_x", xlab = "inches")
+hist(MASTER$pfx_z, main = "Histogram of pfx_z", xlab = "inches")
+hist(MASTER$px, main = "Histogram of px", xlab = "feet")
+hist(MASTER$pz, main = "Histogram of pz", xlab = "feet")
+hist(MASTER$x0, main = "Histogram of x0", xlab = "hor. release point")
+hist(MASTER$z0, main = "Histogram of z0", xlab = "ver. release point")
+hist(MASTER$vx0, main = "Histogram of vx0", xlab = "feet/second")
+hist(MASTER$ax, main = "Histogram of ax", xlab = "acceleration")
+hist(MASTER$ay, main = "Histogram of ay", xlab = "acceleration")
+plot(MASTER$break_y, main = "Barplot of break_y", xlab = "Distance ball breaks from plate")
+hist(MASTER$break_angle, main = "Histogram of Break Angle", xlab = "angle")
+hist(MASTER$break_length, main = "Histogram of Break Length", xlab = "inches")
+plot(MASTER$pitch_type, main = "Barplot of Pitch Type", xlab = "Type of Pitches")
+plot(MASTER$zone, main = "Zones", xlab = "zones")
+hist(MASTER$nasty, main = "Histogram of Nasty Factor", xlab = "N.F.")
+hist(MASTER$spin_dir, main = "Histogram of Spin Direction", xlab = "degrees")
+hist(MASTER$spin_rate, main = "Histogram of Spin_Rate", xlab = "rpm")
+plot(MASTER$count, main = "Plot of Count", xlab = "count")
+plot(MASTER$differential, main = "Plot of Differential", xlab = "Batters Team Score")
+
+
+#split the data for JB from the master set
+JB_ALL <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$batter_name=="Jose Bautista")
+JB_numerical <- JB_ALL %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, nasty, spin_dir, spin_rate)
+JB_categorical <- JB_ALL %>%
+  select(des, break_y, pitch_type, zone, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) 
+
+#split the data for JD from the master set
+JD_ALL <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$batter_name=="Josh Donaldson")
+JD_numerical <- JD_ALL %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, nasty, spin_dir, spin_rate)
+JD_categorical <- JD_ALL %>%
+  select(des, break_y, pitch_type, zone, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) 
+
+#split the data for KP from the master set
+KP_ALL <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_y, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$batter_name=="Kevin Pillar")
+KP_numerical <- KP_ALL %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, nasty, spin_dir, spin_rate)
+KP_categorical <- KP_ALL %>%
+  select(des, break_y, pitch_type, zone, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) 
+
+
+
+
+
+
+#get numerical variable and categorical variable correlation matrix
+
+MASTER_numerical <- rbind(JB_numerical, JD_numerical, KP_numerical)
+MASTER_categorical <- rbind(JB_categorical, JD_categorical, KP_categorical)
+numerical_correlation <- cor(MASTER_numerical[,-1])
+print(numerical_correlation)
+
+#install.packages("sjPlot")
+library(sjPlot)
+
+categorical_correlation_matrix <- MASTER_categorical
+categorical_correlation_matrix[] <- lapply(categorical_correlation_matrix,as.integer)
+sjp.corr(categorical_correlation_matrix[,-1])
+
+
+#create a data.frame to plot the parameters of the strike-zone for pitch visualizations
+x <- c(-.95, .95, .95, -.95, -.95)
+z <- c(1.6, 1.6, 3.5, 3.5, 1.6)
+sz <- data.frame(x,z)
+sz
+
+#use ggplot to draw strike zone
+#install.packages("ggplot2")
+#library(ggplot2)
+
+#strike_zone_parameters <- ggplot()+
+#  geom_path(data=sz, aes(x=x,y=z))+
+#  coord_equal()+
+#  xlab("feet from home plate")+
+#  ylab("feet above the ground")
+
+
+#generate data frame with only pitches swung at for Jose Bautista (JB), Josh Donaldson (JD) and Kevin Pilar (KP)
+JB_Swing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="1", MASTER$batter_name=="Jose Bautista")
+  
+JB_NoSwing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="0", MASTER$batter_name=="Jose Bautista")
+
+JD_Swing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="1", MASTER$batter_name=="Josh Donaldson")
+
+JD_NoSwing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="0", MASTER$batter_name=="Josh Donaldson")
+
+KP_Swing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="1", MASTER$batter_name=="Kevin Pillar")
+
+KP_NoSwing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="0", MASTER$batter_name=="Kevin Pillar")
+
+TOTAL_Swing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="1")
+
+TOTAL_NoSwing <- MASTER %>%
+  select(des, start_speed, end_speed, pfx_x, pfx_z, px, pz, x0, z0, vx0, ax, ay, az, break_angle, break_length, pitch_type, zone, nasty, spin_dir, spin_rate, inning_side.x, inning.x, on_1b, on_2b, on_3b, count, p_throws, differential) %>%
+  filter(MASTER$des=="0")
+
+
+#plot of pitcher ahead in the count and all batters ahead or behind by 1 2 3 or 4 runs
+aheadcount_TOTAL_Swing <- TOTAL_Swing %>%
+  select(everything()) %>%
+  filter(count %in% c("4", "7", "8", "10", "11", "12"))
+aheadcount_TOTAL_Swing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=aheadcount_TOTAL_Swing, aes(x=px, y=pz))
+aheadcount_TOTAL_Swing_LP
+
+aheadcount_TOTAL_NoSwing <- TOTAL_NoSwing %>%
+  select(everything()) %>%
+  filter(count %in% c("4", "7", "8", "10", "11", "12"))
+aheadcount_TOTAL_NoSwing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=aheadcount_TOTAL_NoSwing, aes(x=px, y=pz))
+aheadcount_TOTAL_NoSwing_LP
+##
+evencount_TOTAL_Swing <- TOTAL_Swing %>%
+  select(everything()) %>%
+  filter(count %in% c("1", "5", "9"))
+evencount_TOTAL_Swing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=evencount_TOTAL_Swing, aes(x=px, y=pz))
+evencount_TOTAL_Swing_LP
+
+evencount_TOTAL_NoSwing <- TOTAL_NoSwing %>%
+  select(everything()) %>%
+  filter(count %in% c("1", "5", "9"))
+evencount_TOTAL_NoSwing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=evencount_TOTAL_NoSwing, aes(x=px, y=pz))
+evencount_TOTAL_NoSwing_LP
+
+##
+behindcount_TOTAL_Swing <- TOTAL_Swing %>%
+  select(everything()) %>%
+  filter(count %in% c("2", "3", "6"))
+behindcount_TOTAL_Swing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=behindcount_TOTAL_Swing, aes(x=px, y=pz))
+behindcount_TOTAL_Swing_LP
+
+behindcount_TOTAL_NoSwing <- TOTAL_NoSwing %>%
+  select(everything()) %>%
+  filter(count %in% c("2", "3", "6"))
+behindcount_TOTAL_NoSwing_LP <- ggplot()+
+  geom_path(data=sz, aes(x=x,y=z))+
+  coord_equal()+
+  xlab("bottom of strike zone")+
+  ylab("top of strike zone")+
+  geom_point(data=behindcount_TOTAL_NoSwing, aes(x=px, y=pz))
+behindcount_TOTAL_NoSwing_LP
+
+
+
+##CLUSTERING
+
+## K-Means Clustering for JB - No Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+JB_NoSwing_clust <- kmeans(JB_NoSwing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+JB_NoSwing$cluster <- JB_NoSwing_clust$cluster
+
+###view averages of each cluster
+JB_Clusters_NoSwing <- aggregate(JB_NoSwing[,c(2:14, 19, 20)], by=list(cluster=JB_NoSwing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="JB_NoSwing_cluster_kmeansPlot.png", height=5000, width=5000)
+JB_NoSwing_kMeans_clusplot <- clusplot(JB_NoSwing[,c(2:14, 19, 20)], JB_NoSwing$cluster, color=T, lwd=10)
+dev.off()
+print(JB_Clusters_NoSwing)
+
+
+library(xlsx)
+write.xlsx(JB_Clusters_NoSwing, "c:/Users/ZQ Analytics/Documents/JB_Clusters_NoSwing.xlsx")
+
+
+
+## K-Means Clustering for JB - Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+JB_Swing_clust <- kmeans(JB_Swing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+JB_Swing$cluster <- JB_Swing_clust$cluster
+
+###view averages of each cluster
+JB_Clusters_Swing <- aggregate(JB_Swing[,c(2:14, 19, 20)], by=list(cluster=JB_Swing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="JB_Swing_cluster_kmeansPlot.png", height=5000, width=5000)
+JB_Swing_kMeans_clusplot <- clusplot(JB_Swing[,c(2:14, 19, 20)], JB_Swing$cluster, color=T, lwd=10)
+dev.off()
+print(JB_Clusters_Swing)
+
+
+library(xlsx)
+write.xlsx(JB_Clusters_Swing, "c:/Users/ZQ Analytics/Documents/JB_Clusters_Swing.xlsx")
+
+
+
+## K-Means Clustering for JD - No Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+JD_NoSwing_clust <- kmeans(JD_NoSwing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+JD_NoSwing$cluster <- JD_NoSwing_clust$cluster
+
+###view averages of each cluster
+JD_Clusters_NoSwing <- aggregate(JD_NoSwing[,c(2:14, 19, 20)], by=list(cluster=JD_NoSwing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="JD_NoSwing_cluster_kmeansPlot.png", height=5000, width=5000)
+JD_NoSwing_kMeans_clusplot <- clusplot(JD_NoSwing[,c(2:14, 19, 20)], JD_NoSwing$cluster, color=T, lwd=10)
+dev.off()
+print(JD_Clusters_NoSwing)
+
+
+library(xlsx)
+write.xlsx(JD_Clusters_NoSwing, "c:/Users/ZQ Analytics/Documents/JD_Clusters_NoSwing.xlsx")
+
+
+
+## K-Means Clustering for JD - Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+JD_Swing_clust <- kmeans(JD_Swing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+JD_Swing$cluster <- JD_Swing_clust$cluster
+
+###view averages of each cluster
+JD_Clusters_Swing <- aggregate(JD_Swing[,c(2:14, 19, 20)], by=list(cluster=JD_Swing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="JD_Swing_cluster_kmeansPlot.png", height=5000, width=5000)
+JD_Swing_kMeans_clusplot <- clusplot(JD_Swing[,c(2:14, 19, 20)], JD_Swing$cluster, color=T, lwd=10)
+dev.off()
+print(JD_Clusters_Swing)
+
+
+library(xlsx)
+write.xlsx(JD_Clusters_Swing, "c:/Users/ZQ Analytics/Documents/JD_Clusters_Swing.xlsx")
+
+
+
+
+
+
+## K-Means Clustering for KP - No Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+KP_NoSwing_clust <- kmeans(KP_NoSwing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+KP_NoSwing$cluster <- KP_NoSwing_clust$cluster
+
+###view averages of each cluster
+KP_Clusters_NoSwing <- aggregate(KP_NoSwing[,c(2:14, 19, 20)], by=list(cluster=KP_NoSwing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="KP_NoSwing_cluster_kmeansPlot.png", height=5000, width=5000)
+KP_NoSwing_kMeans_clusplot <- clusplot(KP_NoSwing[,c(2:14, 19, 20)], KP_NoSwing$cluster, color=T, lwd=10)
+dev.off()
+print(KP_Clusters_NoSwing)
+
+
+library(xlsx)
+write.xlsx(KP_Clusters_NoSwing, "c:/Users/ZQ Analytics/Documents/KP_Clusters_NoSwing.xlsx")
+
+
+## K-Means Clustering for KP - Swing
+library(mclust)
+set.seed(1111)
+
+#apply K-means on numerical attributes, initial clusters = 25, final clusters = 4
+
+###do k-means with 5 clusters and 25 different randomly place centroid locations for each
+KP_Swing_clust <- kmeans(KP_Swing[,c(2:14, 19, 20)], 2, nstart=25)
+
+
+#add clusters to dataframe
+KP_Swing$cluster <- KP_Swing_clust$cluster
+
+###view averages of each cluster
+KP_Clusters_Swing <- aggregate(KP_Swing[,c(2:14, 19, 20)], by=list(cluster=KP_Swing$cluster), mean)
+
+#print clusplot
+library(cluster)
+png(file="KP_Swing_cluster_kmeansPlot.png", height=5000, width=5000)
+KP_Swing_kMeans_clusplot <- clusplot(KP_Swing[,c(2:14, 19, 20)], KP_Swing$cluster, color=T, lwd=10)
+dev.off()
+print(KP_Clusters_Swing)
+
+
+library(xlsx)
+write.xlsx(KP_Clusters_Swing, "c:/Users/ZQ Analytics/Documents/KP_Clusters_Swing.xlsx")
+
+
+
+#create training set and test set for each batter
+
+JB_train <- JB_ALL[1:5295,]
+JB_test <- JB_ALL[5296:8024,]
+
+JD_train <- JD_ALL[1:5260,]
+JD_test <- JD_ALL[5261:7970,]
+
+KP_train <- KP_ALL[1:4435,]
+KP_test <- KP_ALL[4436:6721,]
+
+
+
+
+
+
+## split into training and test sets
+library(caret)
+JB_Train <- createDataPartition(JB_ALL$des, p=0.6, list=FALSE)
+JB_training <- JB_ALL[JB_Train, ]
+JB_testing <- JB_ALL[-JB_Train, ]
+JD_Train <- createDataPartition(JD_ALL$des, p=0.6, list=FALSE)
+JD_training <- JD_ALL[JD_Train, ]
+JD_testing <- JD_ALL[-JD_Train, ]
+KP_Train <- createDataPartition(KP_ALL$des, p=0.6, list=FALSE)
+KP_training <- KP_ALL[KP_Train, ]
+KP_testing <- KP_ALL[-KP_Train, ]
+
+
+
+#logistic regression model and CM generation
+JB_fit_lr <- glm(JB_training$des~ ., data=JB_training, family = binomial)
+JB_probs <- predict(JB_fit_lr, newdata = JB_testing, type = "response")
+JB_pred <- ifelse(JB_probs > 0.5, "1", "0")
+SwingOrNot_JB1 <- JB_testing$des
+table(JB_pred, SwingOrNot_JB)
+
+JD_fit_lr <- glm(JD_training$des~ ., data=JD_training, family = binomial)
+JD_probs <- predict(JD_fit_lr, newdata = JD_testing, type = "response")
+JD_pred <- ifelse(JD_probs > 0.5, "1", "0")
+SwingOrNot_JD1 <- JD_testing$des
+table(JD_pred, SwingOrNot_JD)
+
+KP_fit_lr <- glm(KP_training$des~ ., data=KP_training, family = binomial)
+KP_probs <- predict(KP_fit_lr, newdata = KP_testing, type = "response")
+KP_pred <- ifelse(KP_probs > 0.5, "1", "0")
+SwingOrNot_KP1 <- KP_testing$des
+table(KP_pred, SwingOrNot_KP)
+
+
+#random forest model and CM generation
+JB_fit_rf <- randomForest(JB_training$des ~ ., data = JB_training, importance = TRUE, ntree = 500 )
+JB_pred2 <- predict(JB_fit_rf, JB_testing)
+SwingOrNot_JB2 <- JB_testing$des
+table(JB_pred2, SwingOrNot_JB2)
+
+JD_fit_rf <- randomForest(JD_training$des ~ ., data = JD_training, importance = TRUE, ntree = 500 )
+JD_pred2 <- predict(JD_fit_rf, JD_testing)
+SwingOrNot_JD2 <- JD_testing$des
+table(JD_pred2, SwingOrNot_JD2)
+
+KP_fit_rf <- randomForest(KP_training$des ~ ., data = KP_training, importance = TRUE, ntree = 500 )
+KP_pred2 <- predict(KP_fit_rf, KP_testing)
+SwingOrNot_KP2 <- KP_testing$des
+table(KP_pred2, SwingOrNot_KP2)
+
+
+
+
+#naive bayes model and CM generation
+
+library(e1071)
+JB_fit_nb <- naiveBayes(des ~., data = JB_training)
+JB_pred3 <- predict(JB_fit_nb, JB_testing)
+SwingOrNot_JB3 <- JB_testing$des
+table(JB_pred3,SwingOrNot_JB3)
+
+JD_fit_nb <- naiveBayes(des ~., data = JD_training)
+JD_pred3 <- predict(JD_fit_nb, JD_testing)
+SwingOrNot_JD3 <- JD_testing$des
+table(JD_pred3,SwingOrNot_JD3)
+
+KP_fit_nb <- naiveBayes(des ~., data = KP_training)
+KP_pred3 <- predict(KP_fit_nb, KP_testing)
+SwingOrNot_KP3 <- KP_testing$des
+table(KP_pred3,SwingOrNot_KP3)
+
+
+#ROC Curves - LOG REG
+library(ROCR)
+JB_p_auc <- predict(JB_fit_lr, newdata=JB_testing, type="response")
+JB_pr_auc <- prediction(JB_p_auc, JB_testing$des)
+JB_pfr_auc <- performance(JB_pr_auc, measure = "tpr", x.measure = "fpr")
+plot(JB_pfr_auc)
+JB_auc <- performance(JB_pr_auc, measure = "auc")
+JB_auc <- auc@y.values[[1]]
+JB_auc
+
+JD_p_auc <- predict(JD_fit_lr, newdata=JD_testing, type="response")
+JD_pr_auc <- prediction(JD_p_auc, JD_testing$des)
+JD_pfr_auc <- performance(JD_pr_auc, measure = "tpr", x.measure = "fpr")
+plot(JD_pfr_auc)
+JD_auc <- performance(JD_pr_auc, measure = "auc")
+JD_auc <- auc@y.values[[1]]
+JD_auc
+
+KP_p_auc <- predict(KP_fit_lr, newdata=KP_testing, type="response")
+KP_pr_auc <- prediction(KP_p_auc, KP_testing$des)
+KP_pfr_auc <- performance(KP_pr_auc, measure = "tpr", x.measure = "fpr")
+plot(KP_pfr_auc)
+KP_auc <- performance(KP_pr_auc, measure = "auc")
+KP_auc <- auc@y.values[[1]]
+KP_auc
+
+#ROC Curves - RF
+set.seed(1111)
+JB_rf_auc <-randomForest(JB_ALL$des ~ ., data=JB_ALL,ntree=500)
+require(pROC)
+JB_rf_roc <-roc(JB_ALL$des,JB_rf_auc$votes[,2])
+plot(JB_rf_roc)
+auc(JB_rf_roc)
+
+set.seed(1111)
+JD_rf_auc <-randomForest(JD_ALL$des ~ ., data=JD_ALL,ntree=500)
+require(pROC)
+JD_rf_roc <-roc(JD_ALL$des,JD_rf_auc$votes[,2])
+plot(JD_rf_roc)
+auc(JD_rf_roc)
+
+set.seed(1111)
+KP_rf_auc <-randomForest(KP_ALL$des ~ ., data=KP_ALL,ntree=500)
+require(pROC)
+KP_rf_roc <-roc(KP_ALL$des,KP_rf_auc$votes[,2])
+plot(KP_rf_roc)
+auc(KP_rf_roc)
